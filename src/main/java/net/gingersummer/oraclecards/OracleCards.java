@@ -1,6 +1,9 @@
 package net.gingersummer.oraclecards;
 
 import com.mojang.logging.LogUtils;
+import net.gingersummer.oraclecards.item.ModItems;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -29,12 +32,13 @@ public class OracleCards
         IEventBus modEventBus = context.getModEventBus();
 
 
+        ModItems.register(modEventBus);
+
+
         modEventBus.addListener(this::commonSetup);
 
 
         MinecraftForge.EVENT_BUS.register(this);
-
-
         modEventBus.addListener(this::addCreative);
     }
 
@@ -42,9 +46,11 @@ public class OracleCards
 
     }
 
-    // Add the example block item to the building blocks tab
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
 
+    private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey()) ==CreativeModeTabs.INGREDIENTS {
+            event.accept(ModItems.CLEAR_QUARTZ);
+        }
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
