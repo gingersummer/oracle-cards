@@ -48,7 +48,7 @@ public class OracleCards
 
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey()) == CreativeModeTabs.INGREDIENTS {
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(ModItems.CLEAR_QUARTZ);
         }
     }
